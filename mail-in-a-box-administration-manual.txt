@@ -202,7 +202,13 @@ For more information, please see
 
 Why?
 
-The idea for this manual came about in conversation with @Eliter over on the Discourse Forums. Having an in-depth administration manual will help new-comers and maybe even veterans to Linux / MIAB to be able to setup and maintain their own mail server!What is Mail-In-A-Box?
+The idea for this manual came about in conversation with @Eliter over on the Discourse Forums. Having an in-depth administration manual will help new-comers and maybe even veterans to Linux / MIAB to be able to setup and maintain their own mail server!
+
+A lot of this manual was taken from mailinabox.email, and is used in accordance the the website license.
+
+Attribution: https://mailinabox.email
+
+What is Mail-In-A-Box?
 
 
 
@@ -246,7 +252,23 @@ This project was inspired in part by the "NSA-proof your email in 2 hours" blog 
 
 Mail-in-a-Box is similar to iRedMail and Modoboa.
 
-Mail-in-a-Box is based on Postfix, Dovecot, Z-Push, Roundcube, Nextcloud, Apache SpamAssassin, Postgrey, Nginx, @konklone’s nginx config, and more.Is Mail-In-A-Box right for me?
+Mail-in-a-Box is based on Postfix, Dovecot, Z-Push, Roundcube, Nextcloud, Apache SpamAssassin, Postgrey, Nginx, @konklone’s nginx config, and more.Mail-In-A-Box System Requirements
+
+The following are a recommended minimum on system requirements.
+
+25GB storage space or more
+
+1GB available RAM
+
+Ubuntu 18.04 (18.04.1 is also compatible) *Note: MIAB will only install on 18.04, NOT 18.10.
+
+We recommend at least a dual core CPU, however it has been known to run on a single core.
+
+You will also need the ability to set a PTR or rDNS record with your ISP. This varies from company to company.
+
+The ability to send and receive on port 25. Some home ISP's will block this, but they might also allow it if you request it. Call them to find out.
+
+Is Mail-In-A-Box right for me?
 
 
 
@@ -276,9 +298,123 @@ To get a domain, you must get it from a domain registrar.Installing & Preparing 
 
 
 
+Installing Ubuntu 18.04
+
+If you are using a VPS (Virtual Private Server) in the cloud, like Digital Ocean, OpenVZ, Nocix, Scaleway, etc then you do not need to follow this page. Please continue to the "Setting up Ubuntu 18.04 and Preparing for Mail-In-A-Box" page instead.
+
+Before we do anything, we will need to download Ubuntu Server 18.04. Please do not use the Desktop version. It has packages that are not compatible with MIAB.
+
+Here is a link to download Ubuntu Server 18.04 AMD64 Version
+
+If you need arm64 version, please refer to the CDIMAGE server which has different architectures for different servers.
+
+Once the download is completed, you will need to either burn the ISO to a DVD or USB stick. If you are using a Hypervisor to make a virtual machine (Xen, VMWare, VirtualBox, or Hyper-V to name a few) then you can continue without burning to a DVD or USB stick.
+
+Lets boot up to the DVD, USB, or ISO and you will see a startup prompt. Select your preferred language and follow the on screen prompts. If this machine is not in the DMZ on your router or firewall please make sure to set the IP during the network setup as manual or static. This will allow you to port forward much easier later. Also make sure to select all drive space when prompted for partitions. The more space, the more emails and cloud hosting you can do.
+
+During the installation you will be asked if you want to setup extra software. DO NOT SELECT ANYTHING and just continue. All software we need will be installed later. We do not want ubuntu automatically configuring anything that can conflict with MIAB.
+
+Once the install is completed, remove any installation media and reboot the server. The next page will explain basic preparations and setup of ubuntu for MIAB.
+
+Setting up Ubuntu 18.04 and Preparing for Mail-In-A-Box
+
+In this part of the manual we will be setting up Ubuntu with SSH, secure passwords, networking (if not done during the install), and other stuff required for MIAB.
+
+Configuring SSH
+
+First thing we will need to do is install SSH, so let's get that out of the way right now.
+
+sudo apt install openssh-server
+
+After the installation is completed, please confirm you can connect by using PuTTY or some other SSH client to connect to the server.
+
+Next, let's setup a public key authentication. If you are on Linux:
+
+ssh-keygen
+
+If you are on Windows, download and run puttygen (or install the PuTTY suite onto your computer.)
+
+Go ahead and open puttygen and generate a new private / public key pair. You can password protect (recommended) this key pair for better security.
+
+Press the "Generate" button in the application, follow the instructions and then fill out the form when it is done generating.
+
+Give it a key comment, a password if desired (again, recommended!), and then select "Save public key" AND "Save private key".
+
+If you plan on using the private key to authenticate on more than just your Windows machine, you can select "Conversions -> Export OpenSSH Key" from the menu bar. However if only on Windows, Saving the private key is enough.
+
+On your server, do:
+
+nano ~/.ssh/authorized_keys
+
+And add the "Public key for pasting into OpenSSH authorized_keys file" and then press CTRL+X, then Y, then enter.
+
+(Picture for reference)
+
+Once the authorized_keys file is saved, we need to edit one more file:
+
+sudo nano /etc/ssh/sshd_config
+
+And modify the following line(s):
+
+...
+
+PasswordAuthentication no
+
+PubkeyAuthentication yes
+
+AuthorizedKeysFile .ssh/authorized_keys
+
+...
+
+Save the file, and restart SSH:
+
+sudo systemctl restart ssh
+
+Once that is done, try to authenticate with the SSH private key, not your password. In Linux this is as simple as just referencing the new key in the SSH command line:
+
+ssh -i ~/path/to/key username@ip_of_machine
+
+In Windows, you will need to use PuTTY and then configure putty to use the private key:
+
+If the connection was successful, then we can move on to the next step. However, if you have any issues, you will need to consult Google as troubleshooting Ubuntu issues is outside the scope of this Manual. (However, make sure you are using the right private key, password, and user. If anything else, in the open SSH session you should still have open, check the syslogs for any errors as well.)Installing Mail-In-A-Box
+
+
+
 Installing Mail-In-A-Box
 
+Before continuing, please make sure you followed the "Setting up Ubuntu 18.04 and Preparing for Mail-In-A-Box" page. There are some recommended steps to make the below go smoothly.
 
+Warning! By installing Mail-In-A-Box, you agree to the Let’s Encrypt Subscriber Agreement(s) & Terms of Services.
+
+Once inside, you will now get the Mail-in-a-Box code onto your box and start its setup. Copy and paste this into your terminal and hit enter:
+
+curl -s https://mailinabox.email/setup.sh | sudo -E bash
+
+Advanced: To change the default location where Mail-in-a-Box stores all of its data, you can set an environment variable named 'STORAGE_ROOT' before running the setup script. export STORAGE_ROOT=/your/desired/path
+
+You will be asked to enter the email address you want and a few other configuration questions. At the end you will be asked for a password for your email address.
+
+This password will be used to login to webmail, the administrative interface, and on your devices. It will not be used to log onto your Mail-in-a-Box server using SSH.
+
+It is always safe to re-run the setup, either because something went wrong or you just want to see it again. You can do so by following two the steps above again or just running sudo mailinabox from the command line.
+
+If the installation was successful, you should see:
+
+Your Mail-in-a-Box is running.
+
+Please log in to the control panel for further instructions at:
+
+ https://ip_of_your_box/admin
+
+You will be alerted that the website has an invalid certificate. Check that
+
+the certificate fingerprint matches:
+
+TLS / SSL Certificates
+
+Go ahead and login to the admin panel. The first thing we should do now is get SSL certificates on this server. Head over to the TLS Certificates page of the admin panel and press "Provision" on the box.domain.tld you selected during install. This will take a few moments, so be patient and follow on-screen instructions. If you do not want to use Let's Encrypt (Though it is recommended that you do) you can manually import TLS/SSL certificates via this page as well.
+
+Setting Up Your First Domain
 
 Updating & Maintaining Mail-In-A-Box
 

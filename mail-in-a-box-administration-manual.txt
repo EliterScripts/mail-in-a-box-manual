@@ -274,7 +274,7 @@ Is Mail-In-A-Box right for me?
 
 TBD
 
-Finding a Hosing Provider & Setting Up a Domain
+Finding a Hosting Provider & Setting Up a Domain
 
 
 
@@ -304,6 +304,10 @@ There are many different hosting providers out there, with different kinds of se
 
 Although there are many reasons not to, it is an option to host your own server at home. As stated in the What is Hosting and a Domain? section, a server is just a specially designed computer. In this section, we'll discuss self-hosting, in which you will be your own hosting provider. Please note, most residential Internet Service Providers frown upon hosting servers on their network, even writing things against doing so in their contracts at times.
 
+Should I Self-Host?
+
+Self-hosting should fit your needs. There are benefits and disadvantages of self-hosting. Self-hosting requires physical maintenance of servers, not just administrative maintenance, whereas if you pay a company to host your server, you would only have to worry about the administrative maintenance of the server.
+
 Finding the Right Hardware
 
 Do I Need Up Time?
@@ -332,7 +336,91 @@ Having a good network to have your server rely on is needed for server up time. 
 
 You should consider both internal and external network (being your ISP) problems as well. Having a plan for when one ISP fails to provide is an excellent strategy. Most datacenters have redundant networks, so users don't have downtime when one network goes down.
 
-There are companies that
+There are companies that specialize in network redundancy, both internal and external. (WIP: more information needed) On your server, you can have multiple Network Interface Cards (NIC's), or multiple Ethernet ports and configure your server to fallback on one if the other fails.
+
+It is also a good idea to make sure that your networking cables are properly installed. If you are hosting multiple physical servers, it is worthwhile to look into organizing the mess of cables. There are plenty of products you can find for cable management online. If your networking cables get into too much of a mess, you could experience server network downtime while you sift through the cable mess, if you ever need to unplug or rearrange things. Be sure to keep it neat, organized, and label which cable goes where. If your network is complex, it is a good idea to draw network diagrams of your network.
+
+Be sure your network cables are reliable and won't fall out of port. Cables that do not have clamps are likely to fall out of the Ethernet port, which will of course lead to down time or high amounts of packets lost. High amounts of packets lost can lead to network disconnection or slower network speeds.
+
+If you have network cables that are backed by metal that are difficult to bend and holds its shape, be sure to not bend them often. If you need to bend them often, purchase cables that are designed to be flexible and bend (WIP: what are these actually called?), as you may damage the cable.
+
+Be sure your cables are sufficient for your needs. Various cables support different speeds at different lengths of cable. Below, is a table, which shows you the range (max length), and the max speed each cable supports. Please note, bits are not bytes, and 1 gbit/s (gigabit per second) is equal to 1,000 mbit/s (megabit per second). The chart below is from lowest quality cable to highest quality cable. CAT7 cable and better exists, but is expensive and higher quality than most users need. If you need longer distances, you can repeat the signal with a network router or network hub, or use a fiber optic cable; If you need higher speeds, use a fiber optic cable as well. However, fiber optic cables are expensive and go beyond what most users need.
+
+Type:
+
+range(ft)
+
+range(meters)
+
+100 mbit/s
+
+1 gbit/s
+
+10 gbit/s
+
+MHz
+
+CAT-5
+
+328
+
+100
+
+X
+
+100
+
+CAT-5E
+
+328
+
+100
+
+X
+
+X
+
+100
+
+CAT-6
+
+328
+
+100
+
+X
+
+X
+
+250
+
+CAT-6
+
+180
+
+55
+
+X
+
+X
+
+X
+
+250
+
+CAT-6A
+
+328
+
+100
+
+X
+
+X
+
+X
+
+500
 
 References
 

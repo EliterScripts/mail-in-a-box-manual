@@ -2569,7 +2569,7 @@ pre code {
                                                     <ul>
                                                                     <li><a href="#page-7">TBD</a></li>
                                                             </ul>
-                                                                    <li><a href="#chapter-4">Finding a Hosing Provider &amp; Setting Up a Domain</a></li>
+                                                                    <li><a href="#chapter-4">Finding a Hosting Provider &amp; Setting Up a Domain</a></li>
                                                     <ul>
                                                                     <li><a href="#page-11">What is Hosting and a Domain?</a></li>
                                                                     <li><a href="#page-22">Should I Self-Host?</a></li>
@@ -2780,10 +2780,10 @@ For more information, please see
                                 <h1 id="page-7">TBD</h1>
                                 
                                                                                                             <div class="page-break"></div>
-                    <h1 id="chapter-4">Finding a Hosing Provider &amp; Setting Up a Domain</h1>
+                    <h1 id="chapter-4">Finding a Hosting Provider &amp; Setting Up a Domain</h1>
                                             <p></p>
                                                                                     <div class="page-break"></div>
-                                <div class="chapter-hint">Finding a Hosing Provider &amp; Setting Up a Domain</div>
+                                <div class="chapter-hint">Finding a Hosting Provider &amp; Setting Up a Domain</div>
                                 <h1 id="page-11">What is Hosting and a Domain?</h1>
                                 <h4 id="bkmrk-what-is-a-server%3F-wh">What is a Server? Why do I need one?</h4>
 <p id="bkmrk-miab-requires-a-serv">MIAB requires a server to run. A server is a computer specially designed to run server applications, typically to be powered on all day, all month, all year, non-stop. However, when we say "server" in a hardware context, it does not necessarily have to be server-grade hardware, it can be any computer.</p>
@@ -2796,10 +2796,12 @@ For more information, please see
 <h4 id="bkmrk-terminology">Terminology</h4>
 <p id="bkmrk-terminology-within-t">Terminology within this manual may include "hosting company" or "hosting provider", which refers to the company that provides your server. These companies usually have an Internet Service Provider or "ISP", which provides access to the public network (commonly known as the "internet") to and from your server. However, for the most part, the hosting provider will usually work with their ISP to get what you need from their control panel.</p>
                                                             <div class="page-break"></div>
-                                <div class="chapter-hint">Finding a Hosing Provider &amp; Setting Up a Domain</div>
+                                <div class="chapter-hint">Finding a Hosting Provider &amp; Setting Up a Domain</div>
                                 <h1 id="page-22">Should I Self-Host?</h1>
                                 <p id="bkmrk-there-are-many-diffe">There are many different hosting providers out there, with different kinds of services they offer, with many pros and cons to them, and things to consider. In this section, we'll discuss self-hosting, which may be beneficial to read, even if you plan to use a VPS (We will discuss VPS's further in the chapter), since it will also shed light on what hosting providers are responsible for, and what to look for.</p>
 <p id="bkmrk-although-there-are-m">Although there are many reasons not to, it is an option to host your own server at home. As stated in the <em>What is Hosting and a Domain?</em> section, a server is just a specially designed computer. In this section, we'll discuss self-hosting, in which you will be your own hosting provider. Please note, most residential Internet Service Providers frown upon hosting servers on their network, even writing things against doing so in their contracts at times.</p>
+<h4 id="bkmrk-should-i-self-host%3F">Should I Self-Host?</h4>
+<p id="bkmrk-self-hosting-should-">Self-hosting should fit your needs. There are benefits and disadvantages of self-hosting. Self-hosting requires physical maintenance of servers, not just administrative maintenance, whereas if you pay a company to host your server, you would only have to worry about the administrative maintenance of the server.</p>
 <h3 id="bkmrk-finding-the-right-ha">Finding the Right Hardware</h3>
 <h5 id="bkmrk-do-i-need-up-time%3F">Do I Need Up Time?</h5>
 <p id="bkmrk-mail-servers-usually">Mail servers usually require a lot of up time, since mail is more likely to be lost if the server isn't online and waiting to accept it from another mail server. This could be detrimental to your personal life or business, if the server goes down when you or your employees need to send or receive emails. If users can wait while the server is down, and people emailing you have their servers setup to retry sending mail to you if it fails, then server down time may not be a problem for you. Keep in mind, that many servers sending mail to you are outside of your or mail-in-a-box's developer's control, and many servers are not configured well, so it is not safe to bet that they will retry sending mail to you.</p>
@@ -2814,8 +2816,70 @@ For more information, please see
 <h5 id="bkmrk-network">Network</h5>
 <p id="bkmrk-having-a-good-networ">Having a good network to have your server rely on is needed for server up time. As stated in the previous section, about electricity, you should also consider making sure your networking equipment stays powered on, has a power backup, and is surge protected.</p>
 <p id="bkmrk-you-should-consider-">You should consider both internal and external network (being your ISP) problems as well. Having a plan for when one ISP fails to provide is an excellent strategy. Most datacenters have redundant networks, so users don't have downtime when one network goes down.</p>
-<p id="bkmrk-there-are-companies-">There are companies that </p>
+<p id="bkmrk-there-are-companies-">There are companies that specialize in network redundancy, both internal and external. (WIP: more information needed) On your server, you can have multiple Network Interface Cards (NIC's), or multiple Ethernet ports and configure your server to fallback on one if the other fails.</p>
+<p id="bkmrk-it-is-also-a-good-id">It is also a good idea to make sure that your networking cables are properly installed. If you are hosting multiple physical servers, it is worthwhile to look into organizing the mess of cables. There are plenty of products you can find for <strong>cable management</strong> online. If your networking cables get into too much of a mess, you could experience server network downtime while you sift through the cable mess, if you ever need to unplug or rearrange things. Be sure to keep it neat, organized, and label which cable goes where. If your network is complex, it is a good idea to draw network diagrams of your network.</p>
+<p id="bkmrk-be-sure-your-network">Be sure your network cables are reliable and won't fall out of port. Cables that do not have clamps are likely to fall out of the Ethernet port, which will of course lead to down time or high amounts of packets lost. High amounts of packets lost can lead to network disconnection or slower network speeds.</p>
+<p id="bkmrk-if-you-have-network-">If you have network cables that are backed by metal that are difficult to bend and holds its shape, be sure to not bend them often. If you need to bend them often, purchase cables that are designed to be flexible and bend (WIP: what are these actually called?), as you may damage the cable.</p>
+<p id="bkmrk-be-sure-your-cables-">Be sure your cables are sufficient for your needs. Various cables support different speeds at different lengths of cable. Below, is a table, which shows you the range (max length), and the max speed each cable supports. Please note, bits are not bytes, and 1 gbit/s (gigabit per second) is equal to 1,000 mbit/s (megabit per second). The chart below is from lowest quality cable to highest quality cable. CAT7 cable and better exists, but is expensive and higher quality than most users need. If you need longer distances, you can repeat the signal with a network router or network hub, or use a fiber optic cable; If you need higher speeds, use a fiber optic cable as well. However, fiber optic cables are expensive and go beyond what most users need.</p>
+<table style="border-collapse: collapse; width: 100%; height: 186px;" border="1" id="bkmrk-type%3A-range%28ft%29-rang"><tbody>
+<tr style="height: 31px;">
+<td style="width: 14.2857%; height: 31px;">Type:</td>
+<td style="width: 14.2857%; height: 31px;">range(ft)</td>
+<td style="width: 14.2857%; height: 31px;">range(meters)</td>
+<td style="width: 14.2857%; height: 31px;">100 mbit/s</td>
+<td style="width: 14.2857%; height: 31px;">1 gbit/s</td>
+<td style="width: 14.2857%; height: 31px;">10 gbit/s</td>
+<td style="width: 14.2857%; height: 31px;">MHz</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 14.2857%; height: 31px;">CAT-5</td>
+<td style="width: 14.2857%; height: 31px;">328</td>
+<td style="width: 14.2857%; height: 31px;">100</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;"> </td>
+<td style="width: 14.2857%; height: 31px;"> </td>
+<td style="width: 14.2857%; height: 31px;">100</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 14.2857%; height: 31px;">CAT-5E</td>
+<td style="width: 14.2857%; height: 31px;">328</td>
+<td style="width: 14.2857%; height: 31px;">100</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;"> </td>
+<td style="width: 14.2857%; height: 31px;">100</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 14.2857%; height: 31px;">CAT-6</td>
+<td style="width: 14.2857%; height: 31px;">328</td>
+<td style="width: 14.2857%; height: 31px;">100</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;"> </td>
+<td style="width: 14.2857%; height: 31px;">250</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 14.2857%; height: 31px;">CAT-6</td>
+<td style="width: 14.2857%; height: 31px;">180</td>
+<td style="width: 14.2857%; height: 31px;">55</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">250</td>
+</tr>
+<tr style="height: 31px;">
+<td style="width: 14.2857%; height: 31px;">CAT-6A</td>
+<td style="width: 14.2857%; height: 31px;">328</td>
+<td style="width: 14.2857%; height: 31px;">100</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">X</td>
+<td style="width: 14.2857%; height: 31px;">500</td>
+</tr>
+</tbody></table>
 <p id="bkmrk-%C2%A0"> </p>
+<p id="bkmrk-%C2%A0-0"> </p>
+<p id="bkmrk-%C2%A0-1"> </p>
 <h4 id="bkmrk-references">References</h4>
 <p id="bkmrk-1.-henry%2C-a.%2C-%26-henr">1. Henry, A., &amp; Henry, A. (2013, September 27). How to Choose, Buy, and Safely Use a Good Surge Protector. Retrieved February 5, 2019, from https://lifehacker.com/how-to-choose-buy-and-safely-use-a-good-surge-protect-1405568999</p>
                                                                                                             <div class="page-break"></div>

@@ -422,6 +422,22 @@ X
 
 500
 
+Data Redundancy
+
+It is a good idea to have data redundancy, because that is the most important part of a server--the data. While you can replace the software applications, any and all of the server hardware, you cannot replace lost data. While there are companies that specialize in data recovery, it costs a lot of money and there is no guarantee data recovery methods will work. The kind of data recovery we are referring to, is when you have a poor or failed data redundancy plan, and take your hard drives to a data recovery engineer, hoping that they can fix your issue.
+
+Storage drives (both traditional mechanical and solid state drives) sometimes go bad. You can go the extra mile to by more expensive server-grade hard drives that have better manufacturer promises and guarantees, but they still can go bad. Sometimes drives just go bad, but drives can also be damaged from external forces. For mechanical drives, if there is vibration, the drive is dropped or smacked, heat, cold, or drastic changes in temperature, especially when powered on, can cause physical damage or corruption to the data. Both types of drives can be damaged by water, and other conditions that would damage a server as well, especially if the servers are exposed to people who might accidentally bump or mishandle equipment, or the building cannot protect the server from the elements.
+
+Luckily, there are some technologies that, in a disaster, make it so you can throw away and replace equipment and still keep you servers and retain your data. Redundant Array of Independent Disks, or RAID, is a technology that spreads data across multiple drives, or, if you're more organized and complex, logical volumes. In this manual, we will use the term "volume", which can either means a physical drive, or another RAID setup, since you can layer RAID setups. However, if you prefer to have a simple setup, just mentally replace "volume" with "drive".
+
+There are different types of RAID, which do different things. Below, we'll explain some of the RAID types. As a note, some of these RAID types have a minimum amount of volumes to start. However, the RAID types that have redundancy have an amount they are able to lose, which might make the array go under the minimum amount they can start with. This is okay
+
+RAID 0, also called "disk striping", evenly splits writing and reading data across multiple volumes, without any redundancy. It requires at least two volumes. If you lose one volume in a 3 volume setup, you've lost all your data. However, this makes it a lot faster to read and write, since the workload is split evenly across volumes.
+
+RAID 1 writes the same data to each volume, also called "mirroring", which means each volume is exactly the same. This has complete redundancy, and you can throw out and replace volumes without worry. This requires at least two volumes. This makes data reads faster, but costs more per-gigabyte.
+
+RAID 5 (we didn't skip numbers), also called "Striping with parity", is a bit more complicated. It requires at least three volumes to run, and can lose up to one volume and still retain its data. It does this by spreading data across volumes, and adding a "parity" bit on the last volume, so the system can recalculate the data using math if one volume is lost. It does not matter what the "last" volume is, as the system automatically decides. The problem with this is that RAID 5 is a theory that only works
+
 References
 
 1. Henry, A., & Henry, A. (2013, September 27). How to Choose, Buy, and Safely Use a Good Surge Protector. Retrieved February 5, 2019, from https://lifehacker.com/how-to-choose-buy-and-safely-use-a-good-surge-protect-1405568999Installing & Preparing Ubuntu for Mail-In-A-Box
